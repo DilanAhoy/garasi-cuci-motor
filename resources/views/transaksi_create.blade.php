@@ -128,3 +128,4 @@
     document.addEventListener('DOMContentLoaded', updateTarifPreview);
 </script>
 @endsection
+

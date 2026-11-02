@@ -42,6 +42,8 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-bottom: 1px solid var(--dark-border);
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1040;
         }
 
         .navbar-brand-logo {
@@ -144,11 +146,15 @@
             box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
         }
 
+        .dropdown-menu {
+            z-index: 1060;
+        }
+
         .dropdown-menu-dark-custom {
-            background-color: #1e293b;
-            border: 1px solid #334155;
+            background-color: #1e293b !important;
+            border: 1px solid #334155 !important;
             border-radius: 10px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6);
             padding: 8px;
         }
 
@@ -160,9 +166,10 @@
             font-weight: 500;
         }
 
-        .dropdown-menu-dark-custom .dropdown-item:hover {
-            background-color: #2e3d54;
-            color: #ffffff;
+        .dropdown-menu-dark-custom .dropdown-item:hover,
+        .dropdown-menu-dark-custom .dropdown-item:focus {
+            background-color: #2e3d54 !important;
+            color: #ffffff !important;
         }
 
         .nav-link {
@@ -177,6 +184,47 @@
         .nav-link:hover, .nav-link.active {
             color: #ffffff !important;
             background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Mobile Navbar & Hamburger Styling */
+        .navbar-toggler {
+            padding: 0.45rem 0.65rem;
+            border: 1px solid var(--dark-border) !important;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
+            outline: none;
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: #1e293b;
+                padding: 16px;
+                border-radius: 12px;
+                margin-top: 12px;
+                border: 1px solid var(--dark-border);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+                position: relative;
+                z-index: 1050;
+            }
+
+            .navbar-nav .dropdown-menu {
+                background-color: #0f172a !important;
+                border: 1px solid var(--dark-border) !important;
+                margin-top: 8px;
+                padding: 8px;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 10px 14px !important;
+            }
         }
 
         /* Print Media Styling */
@@ -218,7 +266,7 @@
                     <span class="badge bg-warning text-dark fw-bold ms-2 px-2 py-1" style="font-size: 0.72rem; letter-spacing: 0.5px;">STEAM PRO</span>
                 </a>
 
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -237,7 +285,7 @@
                                 <a class="nav-link dropdown-toggle {{ request()->is('paket*') || request()->is('pelanggan*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-database me-1 text-info"></i> Data Master
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark-custom">
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-dark-custom">
                                     <li><h6 class="dropdown-header text-uppercase text-secondary" style="font-size: 0.7rem;">Paket Cuci</h6></li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('paket.index') }}">
@@ -269,7 +317,7 @@
                                 <a class="nav-link dropdown-toggle {{ request()->is('transaksi*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-receipt me-1 text-warning"></i> Transaksi Cuci
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark-custom">
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-dark-custom">
                                     <li>
                                         <a class="dropdown-item" href="{{ route('transaksi.index') }}">
                                             <i class="bi bi-hourglass-split me-2 text-warning"></i> Data Antrean & Transaksi
@@ -288,7 +336,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-printer me-1 text-success"></i> Laporan
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark-custom">
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-dark-custom">
                                     <li>
                                         <a class="dropdown-item" href="{{ route('paket.laporan') }}" target="_blank">
                                             <i class="bi bi-file-earmark-text me-2 text-primary"></i> Laporan Paket Cuci
@@ -331,7 +379,7 @@
                                     </div>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark-custom" style="min-width: 240px;" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark dropdown-menu-dark-custom" style="min-width: 240px;" aria-labelledby="navbarDropdown">
                                     <div class="px-3 py-2 border-bottom border-secondary mb-2">
                                         <div class="fw-bold text-white">{{ Auth::user()->name }}</div>
                                         <div class="text-secondary small">{{ Auth::user()->email }}</div>
@@ -398,5 +446,8 @@
             </div>
         </main>
     </div>
+
+    <!-- Bootstrap 5.3 JavaScript Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
