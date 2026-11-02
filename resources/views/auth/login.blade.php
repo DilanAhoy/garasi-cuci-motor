@@ -5,8 +5,8 @@
     <div class="col-md-5 col-lg-4">
         <!-- Logo & Header Brand -->
         <div class="text-center mb-4">
-            <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle mb-3 shadow" style="background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #3b82f6; width: 75px; height: 75px;">
-                <span style="font-size: 2rem;">🏍️</span>
+            <div class="mb-3">
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Logo Garasi Cuci Motor" width="80" height="80" class="rounded-circle border border-warning border-3 shadow-lg" style="object-fit: cover;">
             </div>
             <h3 class="fw-bold text-white mb-1">GARASI CUCI MOTOR</h3>
             <span class="badge bg-warning text-dark fw-bold px-3 py-1" style="letter-spacing: 1px;">STEAM & CARE PRO</span>

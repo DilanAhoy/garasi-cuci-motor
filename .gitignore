@@ -1,4 +1,6 @@
 *.log
+*.zip
+CATATAN.txt
 .DS_Store
 .env
 .env.backup

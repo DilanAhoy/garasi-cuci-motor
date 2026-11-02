@@ -9,6 +9,9 @@
 
     <title>{{ config('app.name', 'Garasi Cuci Motor') }} - Steam & Care Pro</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo.jpeg') }}">
+
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -262,7 +265,7 @@
         <nav class="navbar navbar-expand-lg navbar-otomotif sticky-top">
             <div class="container-fluid px-lg-4">
                 <a class="navbar-brand navbar-brand-logo" href="{{ url('/home') }}">
-                    <span class="me-2">🏍️</span> GARASI
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" width="38" height="38" class="rounded-circle border border-warning shadow-sm me-2"> GARASI
                     <span class="badge bg-warning text-dark fw-bold ms-2 px-2 py-1" style="font-size: 0.72rem; letter-spacing: 0.5px;">STEAM PRO</span>
                 </a>
 

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Struk Nota #{{ $transaksi->kode_transaksi }} - GARASI CUCI MOTOR</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo.jpeg') }}">
     <!-- Bootstrap CSS for action buttons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -105,7 +107,10 @@
     <div class="receipt-container">
         <!-- Header -->
         <div class="receipt-header">
-            <p class="receipt-title">🏍️ GARASI CUCI MOTOR</p>
+            <div class="mb-2">
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" width="45" height="45" class="rounded-circle border border-dark" style="object-fit: cover;">
+            </div>
+            <p class="receipt-title">GARASI CUCI MOTOR</p>
             <div style="font-size: 11px; font-weight: 600;">STEAM & CARE PRO</div>
             <div style="font-size: 10px;">Jl. Raya Otomotif No. 88, Jambi</div>
             <div style="font-size: 10px;">WA: 0812-3456-7890</div>
