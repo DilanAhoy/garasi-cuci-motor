@@ -24,7 +24,7 @@ class PelangganController extends Controller
     public function index()
     {
         $pelanggans = Pelanggan::orderBy('id', 'desc')->paginate(3);
-        return view('pelanggan.index', compact('pelanggans'));
+        return view('pelanggan_index', compact('pelanggans'));
     }
 
     /**
@@ -33,7 +33,7 @@ class PelangganController extends Controller
     public function create()
     {
         $jenis_motor_options = $this->jenisMotorOptions;
-        return view('pelanggan.create', compact('jenis_motor_options'));
+        return view('pelanggan_create', compact('jenis_motor_options'));
     }
 
     /**
@@ -52,7 +52,7 @@ class PelangganController extends Controller
 
         Pelanggan::create($validated);
 
-        return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil ditambahkan.');
+        return redirect()->route('pelanggan.index')->with('pesan', 'Pelanggan baru berhasil ditambahkan.');
     }
 
     /**
@@ -61,7 +61,7 @@ class PelangganController extends Controller
     public function edit(Pelanggan $pelanggan)
     {
         $jenis_motor_options = $this->jenisMotorOptions;
-        return view('pelanggan.edit', compact('pelanggan', 'jenis_motor_options'));
+        return view('pelanggan_edit', compact('pelanggan', 'jenis_motor_options'));
     }
 
     /**
@@ -80,7 +80,7 @@ class PelangganController extends Controller
 
         $pelanggan->update($validated);
 
-        return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil diperbarui.');
+        return redirect()->route('pelanggan.index')->with('pesan', 'Data pelanggan berhasil diperbarui.');
     }
 
     /**
@@ -90,7 +90,7 @@ class PelangganController extends Controller
     {
         $pelanggan->delete();
 
-        return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil dihapus.');
+        return redirect()->route('pelanggan.index')->with('pesan', 'Data pelanggan berhasil dihapus.');
     }
 
     /**
@@ -99,6 +99,6 @@ class PelangganController extends Controller
     public function laporan()
     {
         $pelanggans = Pelanggan::orderBy('id', 'desc')->get();
-        return view('pelanggan.laporan', compact('pelanggans'));
+        return view('pelanggan_laporan', compact('pelanggans'));
     }
 }

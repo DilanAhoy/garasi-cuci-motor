@@ -13,7 +13,7 @@ class PaketController extends Controller
     public function index()
     {
         $pakets = Paket::orderBy('id', 'desc')->paginate(3);
-        return view('paket.index', compact('pakets'));
+        return view('paket_index', compact('pakets'));
     }
 
     /**
@@ -21,7 +21,7 @@ class PaketController extends Controller
      */
     public function create()
     {
-        return view('paket.create');
+        return view('paket_create');
     }
 
     /**
@@ -38,7 +38,7 @@ class PaketController extends Controller
 
         Paket::create($validated);
 
-        return redirect()->route('paket.index')->with('success', 'Paket berhasil ditambahkan.');
+        return redirect()->route('paket.index')->with('pesan', 'Paket cuci baru berhasil ditambahkan.');
     }
 
     /**
@@ -46,7 +46,7 @@ class PaketController extends Controller
      */
     public function edit(Paket $paket)
     {
-        return view('paket.edit', compact('paket'));
+        return view('paket_edit', compact('paket'));
     }
 
     /**
@@ -63,7 +63,7 @@ class PaketController extends Controller
 
         $paket->update($validated);
 
-        return redirect()->route('paket.index')->with('success', 'Paket berhasil diperbarui.');
+        return redirect()->route('paket.index')->with('pesan', 'Data paket cuci berhasil diperbarui.');
     }
 
     /**
@@ -73,7 +73,7 @@ class PaketController extends Controller
     {
         $paket->delete();
 
-        return redirect()->route('paket.index')->with('success', 'Paket berhasil dihapus.');
+        return redirect()->route('paket.index')->with('pesan', 'Paket cuci berhasil dihapus.');
     }
 
     /**
@@ -82,6 +82,6 @@ class PaketController extends Controller
     public function laporan()
     {
         $pakets = Paket::orderBy('id', 'desc')->get();
-        return view('paket.laporan', compact('pakets'));
+        return view('paket_laporan', compact('pakets'));
     }
 }

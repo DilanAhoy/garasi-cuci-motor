@@ -1,72 +1,79 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div class="row justify-content-center py-4">
+    <div class="col-md-5 col-lg-4">
+        <!-- Logo & Header Brand -->
+        <div class="text-center mb-4">
+            <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle mb-3 shadow" style="background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #3b82f6; width: 75px; height: 75px;">
+                <span style="font-size: 2rem;">🏍️</span>
             </div>
+            <h3 class="fw-bold text-white mb-1">GARASI CUCI MOTOR</h3>
+            <span class="badge bg-warning text-dark fw-bold px-3 py-1" style="letter-spacing: 1px;">STEAM & CARE PRO</span>
+            <p class="text-secondary small mt-2 mb-0">Sistem Kasir &amp; Manajemen Antrean Cuci Motor</p>
+        </div>
+
+        <div class="card card-custom p-4 shadow-lg border-secondary">
+            <h5 class="fw-bold text-white mb-3 text-center">Masuk ke Dashboard</h5>
+
+            <!-- Demo Info Banner -->
+            <div class="alert alert-info border-0 p-2 mb-3 rounded-3 small" style="background-color: rgba(59, 130, 246, 0.15); color: #93c5fd;">
+                <i class="bi bi-info-circle me-1"></i> <strong>Akun Demo Terisi Otomatis:</strong><br>
+                Email: <code>admin@gmail.com</code> | Password: <code>12345678</code>
+            </div>
+
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <!-- Email Input -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Alamat Email Kasir</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark text-secondary border-secondary"><i class="bi bi-envelope"></i></span>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', 'admin@gmail.com') }}" required autocomplete="email" autofocus>
+                    </div>
+                    @error('email')
+                        <span class="text-danger small mt-1 d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <!-- Password Input -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Kata Sandi</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark text-secondary border-secondary"><i class="bi bi-lock"></i></span>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', '12345678') }}" required autocomplete="current-password">
+                    </div>
+                    @error('password')
+                        <span class="text-danger small mt-1 d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <!-- Remember Me -->
+                <div class="mb-4 d-flex justify-content-between align-items-center">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" checked>
+                        <label class="form-check-label text-secondary small" for="remember">
+                            Ingat Saya di Perangkat Ini
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary fw-bold py-2 shadow">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Masuk Sekarang
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="text-center mt-4">
+            <small class="text-secondary">&copy; {{ date('Y') }} Garasi Cuci Motor - Final Project Pemrograman Web II</small>
         </div>
     </div>
 </div>

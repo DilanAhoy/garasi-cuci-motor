@@ -17,7 +17,7 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail(Auth::id());
 
-        return view('profile.edit', compact('user'));
+        return view('profile', compact('user'));
     }
 
     /**
@@ -44,6 +44,6 @@ class ProfileController extends Controller
 
         $user->update($userData);
 
-        return redirect()->route('profile.edit')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('profile.edit')->with('pesan', 'Profil kasir berhasil diperbarui.');
     }
 }

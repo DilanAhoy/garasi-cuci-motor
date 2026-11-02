@@ -29,7 +29,7 @@ class TransaksiController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(3);
 
-        return view('transaksi.index', compact('transaksis'));
+        return view('transaksi_index', compact('transaksis'));
     }
 
     /**
@@ -42,7 +42,7 @@ class TransaksiController extends Controller
         $list_status = $this->statusOptions;
         $kode_otomatis = 'TRX-' . date('Ymd') . '-' . strtoupper(Str::random(4));
 
-        return view('transaksi.create', compact('list_pelanggan', 'list_paket', 'list_status', 'kode_otomatis'));
+        return view('transaksi_create', compact('list_pelanggan', 'list_paket', 'list_status', 'kode_otomatis'));
     }
 
     /**
@@ -69,7 +69,7 @@ class TransaksiController extends Controller
 
         Transaksi::create($validated);
 
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil ditambahkan.');
+        return redirect()->route('transaksi.index')->with('pesan', 'Transaksi antrean berhasil ditambahkan.');
     }
 
     /**
@@ -81,7 +81,7 @@ class TransaksiController extends Controller
         $list_paket = Paket::orderBy('nama_paket', 'asc')->get();
         $list_status = $this->statusOptions;
 
-        return view('transaksi.edit', compact('transaksi', 'list_pelanggan', 'list_paket', 'list_status'));
+        return view('transaksi_edit', compact('transaksi', 'list_pelanggan', 'list_paket', 'list_status'));
     }
 
     /**
@@ -104,7 +104,7 @@ class TransaksiController extends Controller
 
         $transaksi->update($validated);
 
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diperbarui.');
+        return redirect()->route('transaksi.index')->with('pesan', 'Data transaksi berhasil diperbarui.');
     }
 
     /**
@@ -114,7 +114,7 @@ class TransaksiController extends Controller
     {
         $transaksi->delete();
 
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil dihapus.');
+        return redirect()->route('transaksi.index')->with('pesan', 'Data transaksi berhasil dihapus.');
     }
 
     /**
@@ -138,7 +138,7 @@ class TransaksiController extends Controller
         // Hitung total pendapatan hanya dari transaksi yang selesai
         $total_pendapatan = $transaksis->where('status', 'Selesai')->sum('total_bayar');
 
-        return view('transaksi.laporan', compact('transaksis', 'total_pendapatan', 'tgl_awal', 'tgl_akhir'));
+        return view('transaksi_laporan', compact('transaksis', 'total_pendapatan', 'tgl_awal', 'tgl_akhir'));
     }
 
     /**
@@ -148,6 +148,6 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::with(['pelanggan', 'paket'])->findOrFail($id);
 
-        return view('transaksi.nota', compact('transaksi'));
+        return view('transaksi_nota', compact('transaksi'));
     }
 }
