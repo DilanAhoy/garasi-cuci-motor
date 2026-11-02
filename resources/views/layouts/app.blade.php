@@ -338,12 +338,12 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-dark-custom">
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('paket.laporan') }}" target="_blank">
+                                        <a class="dropdown-item" href="{{ route('paket.laporan') }}">
                                             <i class="bi bi-file-earmark-text me-2 text-primary"></i> Laporan Paket Cuci
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('pelanggan.laporan') }}" target="_blank">
+                                        <a class="dropdown-item" href="{{ route('pelanggan.laporan') }}">
                                             <i class="bi bi-file-earmark-person me-2 text-info"></i> Laporan Data Pelanggan
                                         </a>
                                     </li>

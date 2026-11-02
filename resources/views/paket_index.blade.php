@@ -9,7 +9,7 @@
         <p class="text-secondary mb-0">Manajemen harga dan jenis layanan cuci motor</p>
     </div>
     <div class="col-md-6 text-md-end mt-3 mt-md-0">
-        <a href="{{ route('paket.laporan') }}" target="_blank" class="btn btn-outline-light me-2">
+        <a href="{{ route('paket.laporan') }}" class="btn btn-outline-light me-2">
             <i class="bi bi-printer me-1"></i> Cetak Laporan
         </a>
         <a href="{{ route('paket.create') }}" class="btn btn-primary fw-bold">
